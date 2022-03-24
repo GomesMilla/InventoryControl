@@ -1,5 +1,6 @@
 asgiref==3.5.0
 Django==3.2.12
+django-extensions==3.1.5
 pkg_resources==0.0.0
 pytz==2022.1
 sqlparse==0.4.2

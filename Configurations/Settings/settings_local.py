@@ -1,23 +1,22 @@
 from pathlib import Path
+import os, sys
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
+# Localização do projeto
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+# Segurança do projeto
 SECRET_KEY = 'django-insecure-^kuxm1h(@i^m_$)78nk(v889bdn83i(*_7@o=1b^bz&0@k32x$'
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# Developers
 DEBUG = True
-
 ALLOWED_HOSTS = []
 
+# Importando os diretórios.
+sys.path.append(
+    os.path.join(BASE_DIR, "Applications")
+)
 
-# Application definition
 
+# Aplicativos internos
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -26,6 +25,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+# Aplicativos Externos
+INSTALLED_APPS += [
+    'Users',
+]
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -42,7 +48,7 @@ ROOT_URLCONF = 'Configurations.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['Templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -56,11 +62,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Configurations.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -68,9 +69,6 @@ DATABASES = {
     }
 }
 
-
-# Password validation
-# https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -87,27 +85,34 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/3.2/topics/i18n/
-
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
+# Configurações básicas referentes a linguagem e horário
+LANGUAGE_CODE = 'pt-br'
+TIME_ZONE = 'America/Sao_Paulo'
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
-
+# Configurando arquivos estáticos
 STATIC_URL = '/static/'
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+
+
+
+# Configurações de envio do e-mail
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = "gomesmillateste@gmail.com"
+# EMAIL_HOST_PASSWORD = "GomesMillateste1"
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "michel.lemes@unincor.edu.br"
+EMAIL_HOST_PASSWORD = "87028399dd"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
