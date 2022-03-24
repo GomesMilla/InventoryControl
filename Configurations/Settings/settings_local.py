@@ -28,6 +28,7 @@ INSTALLED_APPS = [
 
 # Aplicativos Externos
 INSTALLED_APPS += [
+    'django_extensions',
     'Users',
 ]
 
